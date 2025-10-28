@@ -1,6 +1,6 @@
 site_name: blockfin-docs
 theme:
-  name: terminal
+  name: material
 plugins:
   - search
   - mkdocs-jupyter
