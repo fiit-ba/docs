@@ -1,0 +1,22 @@
+[project]
+name = "docs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "litellm>=1.79.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-github>=0.0.6",
+    "mkdocs-jupyter>=0.25.1",
+    "mkdocs-material>=9.6.22",
+    "mkdocs-terminal>=4.7.0",
+    "python-dotenv>=1.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ipykernel>=6.31.0",
+    "litellm>=1.79.0",
+    "python-dotenv>=1.2.1",
+]

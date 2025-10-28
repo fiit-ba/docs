@@ -1,0 +1,8 @@
+site_name: blockfin-docs
+theme:
+  name: material
+plugins:
+  - search
+  - mkdocs-jupyter
+nav:
+  - Home: index.md
