@@ -91,7 +91,7 @@ import os
 
 
 api_base_url = "http://localhost:11434"
-model_name = "ollama/llama3:latest"  # format : "ollama/MENO_MODELU"
+model_name = "ollama_chat/llama3.2:3b"  # format : "ollama/MENO_MODELU"
 
 messages = [
     {"content": "respond in 20 words. who are you?", "role": "user"}
