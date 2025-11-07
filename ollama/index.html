@@ -1,0 +1,467 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Ollama - blockfin-docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ako-pouzivat-ollama-spolocne-s-dencun-om" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="blockfin-docs" class="md-header__button md-logo" aria-label="blockfin-docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blockfin-docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ollama
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="blockfin-docs" class="md-nav__button md-logo" aria-label="blockfin-docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blockfin-docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ako-pouzivat-ollama-spolocne-s-dencun-om" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ako používať Ollama spoločne s Dencun-om
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ako používať Ollama spoločne s Dencun-om">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#co-je-ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Čo je Ollama?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predpoklady" class="md-nav__link">
+    <span class="md-ellipsis">
+      ‼️ Predpoklady ‼️
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-pripojenie-k-ollama-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pripojenie k Ollama API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Pripojenie k Ollama API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sposob-a-chcem-pracovat-z-mojho-lokalneho-pocitaca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spôsob A: Chcem pracovať z môjho lokálneho počítača
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sposob-b-chcem-pracovat-priamo-na-serveri-dencun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spôsob B: Chcem pracovať priamo na serveri Dencun
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-overenie-funkcnosti" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Overenie funkčnosti
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-priklad-pouzitia-v-pythone-pomocou-litellm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Príklad použitia v Pythone (pomocou litellm)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Ollama</h1>
+
+<h2 id="ako-pouzivat-ollama-spolocne-s-dencun-om">Ako používať Ollama spoločne s Dencun-om</h2>
+<p>Tento návod vám ukáže, ako sa pripojiť k službe Ollama, ktorá beží na serveri Dencun, a ako ju používať vo vašich aplikáciách.</p>
+<h3 id="co-je-ollama">Čo je Ollama?</h3>
+<p><strong>Ollama</strong> je nástroj, ktorý umožňuje jednoducho spúšťať a spravovať veľké jazykové modely (LLM) lokálne. V našom prípade beží Ollama na serveri <strong>Dencun</strong> a poskytuje API rozhranie, cez ktoré môžeme týmto modelom posielať požiadavky.</p>
+<ul>
+<li>Ollama docs: <a href="https://ollama.com/docs">https://ollama.com/docs</a></li>
+</ul>
+<h3 id="predpoklady">‼️ Predpoklady ‼️</h3>
+<p>Než začnete, musíte mať:
+* Nastavený a funkčný <strong>SSH prístup</strong> na server <code>dencun</code>.</p>
+<hr />
+<h3 id="1-pripojenie-k-ollama-api">1. Pripojenie k Ollama API</h3>
+<p>Existujú dva hlavné spôsoby, ako sa k Ollama API pripojiť. </p>
+<h4 id="sposob-a-chcem-pracovat-z-mojho-lokalneho-pocitaca">Spôsob A: Chcem pracovať z môjho <strong>lokálneho počítača</strong></h4>
+<p>Ak chcete API volať z kódu, ktorý beží na vašom osobnom počítači (napr. vo VS Code na vašom laptope), musíte si "presmerovať" port zo servera Dencun k sebe pomocou <strong>port forwardingu</strong>. </p>
+<p>Do terminálu zadajte nasledujúci príkaz:</p>
+<pre><code class="language-bash">ssh -L 11434:localhost:11434 dencun
+</code></pre>
+<ul>
+<li><strong>Vysvetlenie:</strong> Tento príkaz hovorí: "Všetko, čo pošlem na <code>localhost:11434</code> na <em>mojom</em> počítači, presmeruj cez SSH na <code>localhost:11434</code> na serveri <code>dencun</code>."</li>
+<li><strong>Dôležité:</strong> Nechajte tento terminál otvorený po celý čas, kým chcete pripojenie používať.</li>
+</ul>
+<p>Teraz je pre vás Ollama API dostupné na adrese <code>http://localhost:11434</code>.</p>
+<h4 id="sposob-b-chcem-pracovat-priamo-na-serveri-dencun">Spôsob B: Chcem pracovať <strong>priamo na serveri Dencun</strong></h4>
+<p>Ak spúšťate svoj kód (napr. Python skript) priamo na serveri Dencun, nepotrebujete žiadny port forwarding.</p>
+<ol>
+<li>Jednoducho sa prihláste na server:
+    <code>bash
+    ssh dencun</code></li>
+<li>Keďže váš kód beží na tom istom stroji ako Ollama, API je pre vás automaticky dostupné na adrese <code>http://localhost:11434</code>.</li>
+</ol>
+<hr />
+<h3 id="2-overenie-funkcnosti">2. Overenie funkčnosti</h3>
+<p>Bez ohľadu na to, ktorý scenár ste si vybrali, môžete funkčnosť overiť rovnako.</p>
+<p>Otvorte vo vašom webovom prehliadači (ak používate Scenár A) alebo použite nástroj <code>curl</code> v termináli (funguje pre oba scenáre) nasledujúcu adresu:</p>
+<p><code>http://localhost:11434/api/tags</code></p>
+<p><strong>Očakávaný výsledok:</strong> Mali by ste vidieť odpoveď vo formáte JSON, ktorá obsahuje zoznam všetkých LLM modelov dostupných na serveri Dencun.</p>
+<pre><code class="language-json">{
+  &quot;models&quot;: [
+    {
+      &quot;name&quot;: &quot;llama3:latest&quot;,
+      &quot;modified_at&quot;: &quot;...&quot;,
+      &quot;size&quot;: ...
+    },
+    {
+      &quot;name&quot;: &quot;mistral:latest&quot;,
+      &quot;modified_at&quot;: &quot;...&quot;,
+      &quot;size&quot;: ...
+    }
+    // ... a ďalšie modely
+  ]
+}
+</code></pre>
+<hr />
+<h3 id="3-priklad-pouzitia-v-pythone-pomocou-litellm">3. Príklad použitia v Pythone (pomocou litellm)</h3>
+<p>Knižnica litellm zjednodušuje volanie rôznych API. Keďže ste sa (v oboch scenároch) pripojili k localhost:11434, kód bude pre oba prípady rovnaký.</p>
+<p>Uistite sa, že máte knižnicu nainštalovanú:</p>
+<pre><code class="language-bash">pip install litellm
+</code></pre>
+<p>Potom ju môžete použiť v Pythone takto:</p>
+<pre><code class="language-python">from litellm import completion
+import os
+
+
+api_base_url = &quot;http://localhost:11434&quot;
+model_name = &quot;ollama_chat/llama3.2:3b&quot;  # format : &quot;ollama/MENO_MODELU&quot;
+
+messages = [
+    {&quot;content&quot;: &quot;respond in 20 words. who are you?&quot;, &quot;role&quot;: &quot;user&quot;}
+]
+
+response = completion(
+        model=model_name, 
+        messages=messages, 
+        api_base=api_base_url
+    )
+print(response.choices[0].message.content)
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,449 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Dencun SSH Access Guide - blockfin-docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dencun-ssh-access-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="blockfin-docs" class="md-header__button md-logo" aria-label="blockfin-docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blockfin-docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dencun SSH Access Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="blockfin-docs" class="md-nav__button md-logo" aria-label="blockfin-docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blockfin-docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dolezite-upozornenia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dôležité upozornenia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#krok-1-vyplenenie-formulara" class="md-nav__link">
+    <span class="md-ellipsis">
+      Krok 1: Vyplenenie formulára
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#krok-2-generovanie-ssh-klucov" class="md-nav__link">
+    <span class="md-ellipsis">
+      Krok 2: Generovanie SSH kľúčov
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Krok 2: Generovanie SSH kľúčov">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ssh-kluc-pre-fiit" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. SSH kľúč pre FIIT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#krok-3-konfiguracia-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Krok 3: Konfigurácia SSH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#krok-3-pripojenie-na-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Krok 3: Pripojenie na server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Krok 3: Pripojenie na server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pomocou-terminalu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pomocou terminálu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pomocou-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pomocou VS Code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="dencun-ssh-access-guide">Dencun SSH Access Guide</h1>
+<p>Tento tutorial slúži na nastavenie SSH prístupu k serveru Dencun a následne ako pomocou tohto prístupu používať Ollama service, ktorý využíve na prácu s LLM modelmi.</p>
+<ul>
+<li>SSH prístupu - pomocou terminálu alebo VS Code/iný editor</li>
+<li>Dencun (2x4090) - je názov servera/stroja v 5.44, ku ktorému sa pripájate pomocou SSH alebo fyzicky.</li>
+<li><strong>Google registračný formulár</strong> na registráciu žiadost o prihlásenie - <a href="https://forms.gle/B8Va3AofQr9eNjmq6">link</a> (prihlasenie pomocou stuba emailu)</li>
+<li><strong>Google sheet harmonogram</strong> na rezerváciu času na prácu so serverom - <a href="https://docs.google.com/spreadsheets/d/1_PIisa2bJGXeLBm-xElSUzh8ZaSH8xGJC_7-IR2kZgY/edit">link</a> (prihlasenie pomocou stuba emailu)</li>
+</ul>
+<h2 id="dolezite-upozornenia">Dôležité upozornenia</h2>
+<ul>
+<li>Výpočtový výkon servera je obmedzený, preto sa snažte optimalizovať vaše požiadavky a nevyťažovať server zbytočne.</li>
+<li>Tento server sa zdiela medzi viacerými používateľmi a preto je potrebné sa prihlasovať/rezervovať si čas na prácu s ním. Dokument cez, ktorý sa registrujete - alokujete si svoj slot je dostupný <a href="https://docs.google.com/spreadsheets/d/1_PIisa2bJGXeLBm-xElSUzh8ZaSH8xGJC_7-IR2kZgY/edit">tu (google sheet)</a> (prihlasenie pomocou stuba emailu)</li>
+</ul>
+<h2 id="krok-1-vyplenenie-formulara">Krok 1: Vyplenenie formulára</h2>
+<p>Pre získanie prístupu na server je potrebné vyplniť <a href="https://forms.gle/B8Va3AofQr9eNjmq6">tento formulár</a> (prihlasenie pomocou stuba emailu). Následne vám do pár dní bude vytvorené konto a bude vám bude pridelené prihlasovacie meno (pre študentov je to ais id - xmeno, pre zamestnancov meno.priezvisko).</p>
+<h2 id="krok-2-generovanie-ssh-klucov">Krok 2: Generovanie SSH kľúčov</h2>
+<p>Na získanie prístupu k serveru potrebujete SSH kľúč, ktoré sa používa na autentifikáciu. Tento kľúč sa generuje pomocou príkazu, ktorý treba spustiť v termináli.</p>
+<h3 id="1-ssh-kluc-pre-fiit">1. SSH kľúč pre FIIT</h3>
+<pre><code class="language-bash">ssh-keygen -t ed25519 -C &quot;vas_email@stuba.sk&quot; -f ~/.ssh/fiit_internal
+</code></pre>
+<p><strong>Poznámky k SSH kľúčom:</strong>
+- Kľúč sa vytvorí v adresári <code>~/.ssh/</code>
+- Pre kľúč sa vytvoria dva súbory:
+  - <strong>Privátny kľúč</strong> (<code>fiit_internal</code>) - uchovávajte ho v bezpečí a nikdy ho nezdieľajte
+  - <strong>Verejný kľúč</strong> (<code>fiit_internal.pub</code>)</p>
+<h2 id="krok-3-konfiguracia-ssh">Krok 3: Konfigurácia SSH</h2>
+<p>Pre jednoduché pripojenie vytvorte alebo upravte konfiguračný súbor SSH:</p>
+<ol>
+<li>Otvorte alebo vytvorte súbor <code>~/.ssh/config</code>:</li>
+</ol>
+<pre><code class="language-bash">vim ~/.ssh/config
+</code></pre>
+<ol>
+<li>Pridajte nasledujúcu konfiguráciu (nahraďte <code>[vase_prihlasovacie_meno]</code> vaším skutočným ais id menom - xmeno (studenti), meno.priezvisko (zamestnanci)):</li>
+</ol>
+<pre><code class="language-bash">Host blockaccess
+    Hostname 147.175.150.111
+    Port 8022
+    User extaccess
+    IdentityFile ~/.ssh/fiit_internal
+
+Host dencun
+    Hostname dencun
+    Port 8822
+    User [vase_prihlasovacie_meno]
+    IdentityFile ~/.ssh/fiit_internal
+    ProxyJump blockaccess
+</code></pre>
+<h2 id="krok-3-pripojenie-na-server">Krok 3: Pripojenie na server</h2>
+<h3 id="pomocou-terminalu">Pomocou terminálu</h3>
+<p>Po správnej konfigurácii sa môžete pripojiť jednoducho príkazom:</p>
+<pre><code class="language-bash">ssh dencun
+</code></pre>
+<h3 id="pomocou-vs-code">Pomocou VS Code</h3>
+<ol>
+<li>Nainštalujte rozšírenie <strong>Remote - SSH</strong> v VS Code</li>
+<li>Stlačte <code>Ctrl+Shift+P</code> (alebo <code>Cmd+Shift+P</code> na MacOS)</li>
+<li>Napíšte "Remote-SSH: Connect to Host..." a zvolte možnosť <code>Remote-SSH: Connect to Host...</code></li>
+<li>Vyberte <code>dencun</code> zo zoznamu</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
