@@ -71,13 +71,31 @@ Endpoint `/v1/images/generations`.
 
 ## Decision služba
 
-| Alias | Poznámka |
-|---|---|
-| `decision-local` | System One API (state + questions), max 16 384 tokenov na požiadavku, 2 súbežné požiadavky |
+Decision služba používa vlastný formát **System One** (state + questions), nie
+OpenAI chat formát. Preto ju **nevoláš** cez `/v1/chat/completions` ani cez
+`litellm.completion`, ale priamo cez endpoint `/v1/systemone` s LiteLLM kľúčom.
 
-!!! warning "Pripravuje sa"
-    `decision-local` je v konfigurácii, ale zatiaľ nefunguje. Používaj vždy alias
-    `decision-local`, nikdy názov fyzického modelu, ktorý sa môže zmeniť.
+| Endpoint | Model | Limity |
+|---|---|---|
+| `POST $API_BASE/v1/systemone` | `decision-local` | 16 384 tokenov na požiadavku, 2 súbežné požiadavky |
+
+```bash
+curl -X POST "$API_BASE/v1/systemone" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "decision-local", ...}'
+```
+
+Telo požiadavky je vo formáte System One (state + questions).
+
+!!! warning "Prístup na požiadanie"
+    Endpoint `/v1/systemone` funguje len pre kľúče, ktorým ho povolil
+    administrátor. Bez povolenia vráti `403`. O prístup požiadaj vedúceho.
+
+!!! note "Používaj alias"
+    Vždy posielaj `"model": "decision-local"`. Názov fyzického modelu sa môže
+    po výmene zmeniť, preto naň v kóde nespoliehaj, ani na hodnotu poľa
+    `model` v odpovedi.
 
 ## Ukážka
 

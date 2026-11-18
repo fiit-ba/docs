@@ -3,6 +3,9 @@ site_url: https://fiit-ba.github.io/docs/
 theme:
   name: material
   custom_dir: overrides
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
 plugins:
   - search
   - mkdocs-jupyter
