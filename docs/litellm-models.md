@@ -42,10 +42,10 @@ curl "$API_BASE/v1/models" -H "Authorization: Bearer $API_KEY"
 |---|---|---|
 | `gemma4-26b-a4b-hpc` | HPC | reasoning model |
 | `ornith-hpc` | HPC | |
-| `qwen3.8-flash-next-fuska` | fuska | [nvidia/Qwen3.8-Flash-Next-NVFP4](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-NVFP4), reasoning model |
+| `qwen3.8-flash-next` | fuska | [nvidia/Qwen3.8-Flash-Next-NVFP4](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-NVFP4), reasoning model |
 
 !!! tip "Reasoning modely"
-    `gemma4-26b-a4b-hpc` a `qwen3.8-flash-next-fuska` najprv „premýšľajú“ a až potom odpovedajú.
+    `gemma4-26b-a4b-hpc` a `qwen3.8-flash-next` najprv „premýšľajú“ a až potom odpovedajú.
     Pri malom `max_tokens` (napr. 16) minú všetky tokeny na premýšľanie a
     odpoveď je prázdna. Nastav `max_tokens` aspoň na 512.
 
