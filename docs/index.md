@@ -15,3 +15,8 @@
 ## LiteLLM
 
 * [LiteLLM Quickstart](litellm-quickstart.ipynb)
+* [LiteLLM modely](litellm-models.md)
+
+### Pre AI agentov
+
+Každá stránka má tlačidlo **Kopírovať ako Markdown**. Celé docs v jednom súbore: [llms-full.txt](llms-full.txt), prehľad: [llms.txt](llms.txt).

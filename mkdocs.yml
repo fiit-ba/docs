@@ -1,8 +1,25 @@
 site_name: blockfin-docs
+site_url: https://fiit-ba.github.io/docs/
 theme:
   name: material
+  custom_dir: overrides
 plugins:
   - search
   - mkdocs-jupyter
+  - llmstxt:
+      preprocess: llmstxt_preprocess.py
+      markdown_description: Návody pre FIIT infraštruktúru (Dencun, Ollama, LiteLLM proxy a zoznam modelov).
+      full_output: llms-full.txt
+      sections:
+        Dencun:
+          - dencun.md: Nastavenie SSH prístupu k serveru Dencun
+          - ollama.md: Volanie LLM cez Ollama na Dencune
+        LiteLLM:
+          - litellm-quickstart.ipynb: Prvé volanie LiteLLM proxy
+          - litellm-models.md: Zoznam dostupných modelov a aliasov
 nav:
   - Home: index.md
+  - Dencun SSH: dencun.md
+  - Ollama: ollama.md
+  - LiteLLM Quickstart: litellm-quickstart.ipynb
+  - LiteLLM modely: litellm-models.md

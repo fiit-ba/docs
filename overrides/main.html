@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if page and page.file.src_uri != "index.md" %}
+    {% set md_url = page.url ~ "index.md" %}
+    <div class="md-export">
+      <a class="md-button" href="{{ base_url }}/{{ md_url }}">Markdown</a>
+      <button class="md-button" type="button" data-md-copy="{{ base_url }}/{{ md_url }}">Kopírovať ako Markdown</button>
+      <a class="md-button" href="{{ base_url }}/llms-full.txt">Celé docs (llms-full.txt)</a>
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    document.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-md-copy]");
+      if (!button) return;
+      const label = button.textContent;
+      try {
+        const response = await fetch(button.dataset.mdCopy);
+        await navigator.clipboard.writeText(await response.text());
+        button.textContent = "Skopírované";
+      } catch (err) {
+        button.textContent = "Nepodarilo sa skopírovať";
+      }
+      setTimeout(() => { button.textContent = label; }, 2000);
+    });
+  </script>
+  <style>
+    .md-export { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .md-export .md-button { font-size: .7rem; padding: .3em 1em; }
+  </style>
+{% endblock %}
