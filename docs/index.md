@@ -1,6 +1,6 @@
 # blockfin-docs
 
-## Dencun 
+## Dencun a Pectra
 
 ### Linky
 
@@ -9,8 +9,7 @@
 
 ### Návody
 
-* [Dencun SSH Access Guide](dencun.md)
-* [Ako volať LLM pomocou Ollama?](ollama.md)
+* [SSH prístup na Dencun a Pectra](dencun.md)
 
 ## LiteLLM
 
