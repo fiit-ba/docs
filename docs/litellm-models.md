@@ -71,9 +71,9 @@ Endpoint `/v1/images/generations`.
 
 ## Decision služba
 
-Decision služba používa vlastný formát **System One** (state + questions), nie
-OpenAI chat formát. Preto ju **nevoláš** cez `/v1/chat/completions` ani cez
-`litellm.completion`, ale priamo cez endpoint `/v1/systemone` s LiteLLM kľúčom.
+Decision služba používa formát **System One** (state + questions), nie OpenAI
+chat formát. Nevoláš ju cez `/v1/chat/completions`, ale cez endpoint
+`/v1/systemone` s bežným LiteLLM kľúčom.
 
 | Endpoint | Model | Limity |
 |---|---|---|
@@ -83,14 +83,19 @@ OpenAI chat formát. Preto ju **nevoláš** cez `/v1/chat/completions` ani cez
 curl -X POST "$API_BASE/v1/systemone" \
   -H "Authorization: Bearer $API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"model": "decision-local", ...}'
+  -d '{
+    "model": "decision-local",
+    "state": "Customer wrote: I was charged twice for my order and want my money back.",
+    "questions": {
+      "is_refund_request": {"type": "noul", "instructions": "Is the customer asking for a refund?"}
+    }
+  }'
 ```
 
-Telo požiadavky je vo formáte System One (state + questions).
-
-!!! warning "Prístup na požiadanie"
-    Endpoint `/v1/systemone` funguje len pre kľúče, ktorým ho povolil
-    administrátor. Bez povolenia vráti `403`. O prístup požiadaj vedúceho.
+Odpoveď obsahuje odpoveď na každú otázku pod jej menom, napr.
+`{"is_refund_request": {"type": "noul", "noul": 0.98}}`. Typy otázok sú
+`noul`, `choice` a `score`. Viac v
+[LiteLLM dokumentácii](https://docs.litellm.ai/docs/decisions).
 
 !!! note "Používaj alias"
     Vždy posielaj `"model": "decision-local"`. Názov fyzického modelu sa môže
