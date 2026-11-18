@@ -56,9 +56,6 @@ Endpoint `/v1/audio/transcriptions`.
 | Alias | Poznámka |
 |---|---|
 | `gpt-transcribe-fiit` | odporúčaný |
-| `whisper-fiit` | končí 2027-02-26, náhrada `gpt-transcribe-fiit` |
-| `gpt-4o-transcribe-fiit` | končí 2027-02-26, náhrada `gpt-transcribe-fiit` |
-| `gpt-4o-mini-transcribe-fiit` | končí 2027-02-26, náhrada `gpt-transcribe-fiit` |
 
 ## Generovanie obrázkov
 
