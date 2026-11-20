@@ -55,6 +55,7 @@ Poskytovateľa vyberá OpenRouter automaticky (najlacnejší dostupný, pri výp
 | `gemma4-26b-a4b-hpc` | HPC | reasoning model |
 | `ornith-hpc` | HPC | |
 | `qwen3.8-flash-next` | fuska | [nvidia/Qwen3.8-Flash-Next-NVFP4](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-NVFP4), reasoning model |
+| `decision-local` | decision | nie chat model: volá sa cez `/v1/systemone`, pozri [Decision služba](#decision-sluzba) |
 
 !!! tip "Reasoning modely"
     `gemma4-26b-a4b-hpc` a `qwen3.8-flash-next` najprv „premýšľajú“ a až potom odpovedajú.
