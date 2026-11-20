@@ -36,6 +36,18 @@ curl "$API_BASE/v1/models" -H "Authorization: Bearer $API_KEY"
 | `gpt-4.1-fiit` | `gpt-4.1` | končí 2027-01-14, náhrada `gpt-6-luna-fiit` |
 | `gpt-4.1-mini-fiit` | `gpt-4.1-mini` | končí 2027-01-14, náhrada `gpt-6-luna-fiit` |
 
+### OpenRouter
+
+Poskytovateľa vyberá OpenRouter automaticky (najlacnejší dostupný, pri výpadku ďalší).
+
+| Alias | Upstream model | Poznámka |
+|---|---|---|
+| `openrouter-free` | `openrouter/free` | router cez bezplatné modely, prompty môžu byť logované |
+| `qwen4-max-openrouter` | `qwen/qwen4-max` | |
+| `deepseek-v4.1-flash-openrouter` | `deepseek/deepseek-v4.1-flash-1017` | |
+| `glm-5.3-flash-openrouter` | `z-ai/glm-5.3-flash` | |
+| `glm-5.3-openrouter` | `z-ai/glm-5.3` | |
+
 ### Lokálne modely (FIIT servery)
 
 | Alias | Server | Poznámka |
