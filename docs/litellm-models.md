@@ -47,6 +47,8 @@ Poskytovateľa vyberá OpenRouter automaticky (najlacnejší dostupný, pri výp
 | `deepseek-v4.1-flash-openrouter` | `deepseek/deepseek-v4.1-flash-1017` | |
 | `glm-5.3-flash-openrouter` | `z-ai/glm-5.3-flash` | |
 | `glm-5.3-openrouter` | `z-ai/glm-5.3` | |
+| `minimax-m3.1-flash-openrouter` | `minimax/minimax-m3.1-flash` | |
+| `inkling-2-small-openrouter` | `thinkingmachines/inkling-2-small` | |
 
 ### Lokálne modely (FIIT servery)
 
