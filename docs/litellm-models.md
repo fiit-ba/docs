@@ -39,7 +39,8 @@ curl "$API_BASE/v1/models" -H "Authorization: Bearer $API_KEY"
 ### OpenRouter
 
 Poskytovateľa vyberá OpenRouter automaticky (uprednostňuje lacnejších, pri výpadku skúsi ďalšieho).
-Ak potrebuješ konkrétneho, pozri [Výber poskytovateľa](#vyber-poskytovatela).
+Ak si ho chceš vybrať, pozri [Výber poskytovateľa](#vyber-poskytovatela)
+a [odporúčania podľa súkromia, ceny a rýchlosti](#odporucani-poskytovatelia).
 
 | Alias | Upstream model | Poznámka |
 |---|---|---|
@@ -83,6 +84,45 @@ curl -s "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints" \
 !!! warning "Skontroluj si názov"
     Neplatný názov v `only` vráti chybu 404. V `order` sa bez upozornenia preskočí
     a odpovie iný poskytovateľ.
+
+#### Odporúčaní poskytovatelia
+
+Vyber si podľa toho, na čom ti záleží. Všetci v tabuľke podporujú ZDR
+(zero data retention), čiže prompty po spracovaní bežne neukladajú.
+
+| Alias | Súkromie | Cena (vstup / výstup) | Rýchlosť |
+|---|---|---|---|
+| `deepseek-v4.1-flash-openrouter` | `nebius` | `sail-research` ($0,04 / $0,10) | `nebius` (350 t/s) |
+| `glm-5.3-flash-openrouter` | `nebius` | `relace` ($0,05 / $0,07) | `mistral` (213 t/s) |
+| `glm-5.3-openrouter` | `nebius` | `wafer` ($0,07 až 0,18 / $1,40) | `nebius` (354 t/s) |
+| `minimax-m3.1-flash-openrouter` | `nebius` | `nebius` ($0,15 / $0,60) | `nebius` (300 t/s) |
+| `inkling-2-small-openrouter` | `nebius` | `primeintellect` ($0,15 / $0,50) | `primeintellect` (399 t/s) |
+
+Názov z tabuľky daj do `provider`:
+
+- **Súkromie:** `"provider": {"only": ["nebius"], "zdr": true}`. Nebius sídli v Holandsku. Keď má výpadok,
+  dostaneš chybu a prompt k inému poskytovateľovi nejde.
+- **Cena alebo rýchlosť:** `"provider": {"order": ["sail-research"], "zdr": true}` (názov vymeň podľa modelu).
+  Pri výpadku odpovie iný poskytovateľ so ZDR, ktorý môže byť drahší alebo pomalší.
+
+Ak nevieš, čo si vybrať, zober `nebius`. Nájdeš ho pri všetkých piatich modeloch z tabuľky
+a pri troch bol v teste aj najrýchlejší. Najlacnejší ale väčšinou nie je.
+
+`qwen4-max-openrouter` má iba poskytovateľa Alibaba, bez ZDR. So `"zdr": true` preto vráti chybu.
+Pri `openrouter-free` si poskytovateľa nevyberaj a počítaj s logovaním promptov.
+
+!!! warning "Citlivé dáta"
+    ZDR platí len pre poskytovateľa. FIIT LiteLLM si prompty ukladá vždy a sídlo v EÚ
+    nezaručuje, že sa dáta spracujú v EÚ. Ak dáta nesmú odísť z fakulty, použi
+    `gemma4-26b-a4b-hpc`, `ornith-hpc` alebo `qwen3.8-flash-next`.
+
+!!! note "Ako sme vyberali (22. 11. 2026)"
+    - Ceny sú v USD za milión tokenov podľa OpenRouter. Porovnávali sme ich pri pomere
+      3 vstupné tokeny na 1 výstupný, bez flex a spot endpointov.
+    - Pri MiniMax je `wafer` o 10 % lacnejší, v teste však vracal 429 alebo bol pomalý.
+    - Rýchlosť je medián zo 7 požiadaviek po 350 tokenov cez FIIT proxy, vrátane čakania
+      na začiatok odpovede. Merali sme len vybraných poskytovateľov a v jeden deň,
+      takže čísla ber orientačne. Ceny aj rýchlosť sa menia.
 
 ### Lokálne modely (FIIT servery)
 
