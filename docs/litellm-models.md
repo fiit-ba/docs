@@ -38,7 +38,8 @@ curl "$API_BASE/v1/models" -H "Authorization: Bearer $API_KEY"
 
 ### OpenRouter
 
-Poskytovateľa vyberá OpenRouter automaticky (najlacnejší dostupný, pri výpadku ďalší).
+Poskytovateľa vyberá OpenRouter automaticky (uprednostňuje lacnejších, pri výpadku skúsi ďalšieho).
+Ak potrebuješ konkrétneho, pozri [Výber poskytovateľa](#vyber-poskytovatela).
 
 | Alias | Upstream model | Poznámka |
 |---|---|---|
@@ -49,6 +50,39 @@ Poskytovateľa vyberá OpenRouter automaticky (najlacnejší dostupný, pri výp
 | `glm-5.3-openrouter` | `z-ai/glm-5.3` | |
 | `minimax-m3.1-flash-openrouter` | `minimax/minimax-m3.1-flash` | |
 | `inkling-2-small-openrouter` | `thinkingmachines/inkling-2-small` | |
+
+#### Výber poskytovateľa
+
+Poskytovateľa si vyberáš v každej požiadavke cez `provider`:
+
+```bash
+curl "$API_BASE/v1/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "glm-5.3-flash-openrouter",
+    "messages": [{"role": "user", "content": "Ahoj!"}],
+    "provider": {"only": ["deepinfra"]}
+  }'
+```
+
+- **Bez `provider`:** OpenRouter vyberie automaticky.
+- **`"only": ["deepinfra"]`:** použije sa iba DeepInfra.
+- **`"order": ["nebius", "deepinfra"]`:** najprv skúsi Nebius, potom DeepInfra a potom ostatných.
+
+V Pythone pridaj do volania `extra_body={"provider": {"only": ["deepinfra"]}}`.
+
+Vybrať si môžeš každého poskytovateľa, ktorý daný model ponúka. Ich názvy vypíšeš takto
+(do URL daj *Upstream model* z tabuľky):
+
+```bash
+curl -s "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints" \
+  | jq -r '.data.endpoints[].tag | split("/")[0]' | sort -u
+```
+
+!!! warning "Skontroluj si názov"
+    Neplatný názov v `only` vráti chybu 404. V `order` sa bez upozornenia preskočí
+    a odpovie iný poskytovateľ.
 
 ### Lokálne modely (FIIT servery)
 
