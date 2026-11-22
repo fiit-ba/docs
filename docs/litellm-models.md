@@ -21,6 +21,11 @@ curl "$API_BASE/v1/models" -H "Authorization: Bearer $API_KEY"
 
 ### OpenAI
 
+GPT modely idú cez OpenRouter, aliasy ostávajú rovnaké. Požiadavku môže obslúžiť OpenAI, Azure
+alebo Amazon Bedrock, podľa modelu. Ak chceš len OpenAI, pridaj `"provider": {"only": ["openai"]}`.
+
+V Responses API posielaj vždy celú históriu. `previous_response_id` a `store: true` cez OpenRouter nefungujú.
+
 | Alias | Upstream model | Poznámka |
 |---|---|---|
 | `gpt-6.2-astra-fiit` | `gpt-6.2-astra` | najsilnejší |
@@ -148,7 +153,7 @@ Endpoint `/v1/audio/transcriptions`.
 
 ## Generovanie obrázkov
 
-Endpoint `/v1/images/generations`.
+Endpoint `/v1/images/generations`. Úprava obrázkov (`/v1/images/edits`) cez OpenRouter nefunguje.
 
 | Alias | Upstream model |
 |---|---|
