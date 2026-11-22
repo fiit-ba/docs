@@ -56,6 +56,7 @@ a [odporúčania podľa súkromia, ceny a rýchlosti](#odporucani-poskytovatelia
 | `glm-5.3-openrouter` | `z-ai/glm-5.3` | |
 | `minimax-m3.1-flash-openrouter` | `minimax/minimax-m3.1-flash` | |
 | `inkling-2-small-openrouter` | `thinkingmachines/inkling-2-small` | |
+| `jev-openrouter` | `~typesafe/jev-latest` | nie chat model: volá sa cez `/v1/systemone`, pozri [Decision služba](#decision-sluzba) |
 
 #### Výber poskytovateľa
 
@@ -169,6 +170,7 @@ chat formát. Nevoláš ju cez `/v1/chat/completions`, ale cez endpoint
 | Endpoint | Model | Limity |
 |---|---|---|
 | `POST $API_BASE/v1/systemone` | `decision-local` | 16 384 tokenov na požiadavku, 2 súbežné požiadavky |
+| `POST $API_BASE/v1/systemone` | `jev-openrouter` | 262 144 tokenov podľa OpenRouter, iba text |
 
 ```bash
 curl -X POST "$API_BASE/v1/systemone" \
@@ -188,8 +190,16 @@ Odpoveď obsahuje odpoveď na každú otázku pod jej menom, napr.
 `noul`, `choice` a `score`. Viac v
 [LiteLLM dokumentácii](https://docs.litellm.ai/docs/decisions).
 
+Pre Jev od TypeSafe zmeň v ukážke iba `model` na `jev-openrouter`. Stojí $0,042 za milión
+vstupných tokenov, výstup je zadarmo. Alias ide vždy na najnovšiu verziu, takže sa výsledky môžu
+časom zmeniť.
+
+!!! warning "Jev ide mimo fakulty"
+    Dáta idú cez OpenRouter k firme TypeSafe. Pole `provider` (aj `"zdr": true`) sa pri
+    `/v1/systemone` zahodí bez upozornenia, takže ZDR si tu nevynútiš. Citlivé dáta sem neposielaj.
+
 !!! note "Používaj alias"
-    Vždy posielaj `"model": "decision-local"`. Názov fyzického modelu sa môže
+    Pri lokálnej službe vždy posielaj `"model": "decision-local"`. Názov fyzického modelu sa môže
     po výmene zmeniť, preto naň v kóde nespoliehaj, ani na hodnotu poľa
     `model` v odpovedi.
 
