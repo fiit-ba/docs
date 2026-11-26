@@ -1,0 +1,13 @@
+# blockfin-docs
+
+Návody pre FIIT infraštruktúru (SSH na GPU servery Dencun a Pectra, LiteLLM proxy a zoznam modelov).
+
+## Servery
+
+- [SSH Dencun a Pectra](https://fiit-ba.github.io/docs/dencun/index.md): SSH prístup na GPU servery Dencun a Pectra
+
+## LiteLLM
+
+- [LiteLLM Quickstart](https://fiit-ba.github.io/docs/litellm-quickstart/index.md): Prvé volanie LiteLLM proxy
+- [LiteLLM modely](https://fiit-ba.github.io/docs/litellm-models/index.md): Zoznam dostupných modelov a aliasov
+

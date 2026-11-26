@@ -1,0 +1,1318 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://fiit-ba.github.io/docs/litellm-models/">
+      
+      
+        <link rel="prev" href="../litellm-quickstart/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>LiteLLM modely - blockfin-docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#litellm-modely" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="blockfin-docs" class="md-header__button md-logo" aria-label="blockfin-docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blockfin-docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LiteLLM modely
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="blockfin-docs" class="md-nav__button md-logo" aria-label="blockfin-docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    blockfin-docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dencun/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH Dencun a Pectra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../litellm-quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LiteLLM Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LiteLLM modely
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LiteLLM modely
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chat-modely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat modely
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chat modely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openrouter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenRouter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenRouter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vyber-poskytovatela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Výber poskytovateľa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odporucani-poskytovatelia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Odporúčaní poskytovatelia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lokalne-modely-fiit-servery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lokálne modely (FIIT servery)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepis-reci-audio-transcription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prepis reči (audio transcription)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generovanie-obrazkov" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generovanie obrázkov
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-sluzba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision služba
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rozpoznavanie-entit-ner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rozpoznávanie entít (NER)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ukazka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ukážka
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chat-modely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat modely
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chat modely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openrouter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenRouter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenRouter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vyber-poskytovatela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Výber poskytovateľa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odporucani-poskytovatelia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Odporúčaní poskytovatelia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lokalne-modely-fiit-servery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lokálne modely (FIIT servery)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepis-reci-audio-transcription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prepis reči (audio transcription)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generovanie-obrazkov" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generovanie obrázkov
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-sluzba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision služba
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rozpoznavanie-entit-ner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rozpoznávanie entít (NER)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ukazka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ukážka
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+    
+    <div class="md-export">
+      <a class="md-button" href="../litellm-models/index.md">Markdown</a>
+      <button class="md-button" type="button" data-md-copy="../litellm-models/index.md">Kopírovať ako Markdown</button>
+      <a class="md-button" href="../llms-full.txt">Celé docs (llms-full.txt)</a>
+    </div>
+  
+  
+                  
+
+
+
+<h1 id="litellm-modely">LiteLLM modely</h1>
+<p>Zoznam modelov dostupných cez FIIT LiteLLM proxy. Do parametra <code>model</code> zadávaš
+<strong>alias</strong> z prvého stĺpca (s prefixom <code>openai/</code> pri volaní cez knižnicu <code>litellm</code>).
+Aktuálny zoznam pre tvoj kľúč vráti:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"</span><span class="nv">$API_BASE</span><span class="s2">/v1/models"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">"</span>
+</code></pre></div>
+<h2 id="chat-modely">Chat modely</h2>
+<h3 id="anthropic">Anthropic</h3>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Upstream model</th>
+<th>Poznámka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claude-fable-5.2-fiit</code></td>
+<td><code>claude-fable-5-2</code></td>
+<td>najsilnejší, náročné uvažovanie</td>
+</tr>
+<tr>
+<td><code>claude-opus-5.5-fiit</code></td>
+<td><code>claude-opus-5-5</code></td>
+<td>odporúčaný na väčšinu úloh</td>
+</tr>
+<tr>
+<td><code>claude-sonnet-5.5-fiit</code></td>
+<td><code>claude-sonnet-5-5</code></td>
+<td>rýchly a lacnejší</td>
+</tr>
+<tr>
+<td><code>claude-haiku-5.5-fiit</code></td>
+<td><code>claude-haiku-5-5</code></td>
+<td>najrýchlejší, najlacnejší</td>
+</tr>
+</tbody>
+</table>
+<h3 id="openai">OpenAI</h3>
+<p>GPT modely idú cez OpenRouter, aliasy ostávajú rovnaké. Požiadavku môže obslúžiť OpenAI, Azure
+alebo Amazon Bedrock, podľa modelu. Ak chceš len OpenAI, pridaj <code>"provider": {"only": ["openai"]}</code>.</p>
+<p>V Responses API posielaj vždy celú históriu. <code>previous_response_id</code> a <code>store: true</code> cez OpenRouter nefungujú.</p>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Upstream model</th>
+<th>Poznámka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gpt-6.2-astra-fiit</code></td>
+<td><code>gpt-6.2-astra</code></td>
+<td>najsilnejší</td>
+</tr>
+<tr>
+<td><code>gpt-6.2-sol-fiit</code></td>
+<td><code>gpt-6.2-sol</code></td>
+<td>pomer výkon/cena</td>
+</tr>
+<tr>
+<td><code>gpt-6.1-terra-fiit</code></td>
+<td><code>gpt-6.1-terra</code></td>
+<td>rýchly</td>
+</tr>
+<tr>
+<td><code>gpt-6-luna-fiit</code></td>
+<td><code>gpt-6-luna</code></td>
+<td>najlacnejší</td>
+</tr>
+<tr>
+<td><code>gpt-5.6-sol-fiit</code></td>
+<td><code>gpt-5.6-sol</code></td>
+<td>staršia generácia</td>
+</tr>
+<tr>
+<td><code>gpt-5.6-terra-fiit</code></td>
+<td><code>gpt-5.6-terra</code></td>
+<td>staršia generácia</td>
+</tr>
+<tr>
+<td><code>gpt-5.6-luna-fiit</code></td>
+<td><code>gpt-5.6-luna</code></td>
+<td>staršia generácia</td>
+</tr>
+<tr>
+<td><code>gpt-5.4-fiit</code></td>
+<td><code>gpt-5.4</code></td>
+<td>staršia generácia</td>
+</tr>
+<tr>
+<td><code>gpt-5.4-mini-fiit</code></td>
+<td><code>gpt-5.4-mini</code></td>
+<td>staršia generácia</td>
+</tr>
+<tr>
+<td><code>gpt-5.4-nano-fiit</code></td>
+<td><code>gpt-5.4-nano</code></td>
+<td>končí 2027-04-01, náhrada <code>gpt-6-luna-fiit</code></td>
+</tr>
+<tr>
+<td><code>gpt-4.1-fiit</code></td>
+<td><code>gpt-4.1</code></td>
+<td>končí 2027-01-14, náhrada <code>gpt-6-luna-fiit</code></td>
+</tr>
+<tr>
+<td><code>gpt-4.1-mini-fiit</code></td>
+<td><code>gpt-4.1-mini</code></td>
+<td>končí 2027-01-14, náhrada <code>gpt-6-luna-fiit</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="openrouter">OpenRouter</h3>
+<p>Poskytovateľa vyberá OpenRouter automaticky (uprednostňuje lacnejších, pri výpadku skúsi ďalšieho).
+Ak si ho chceš vybrať, pozri <a href="#vyber-poskytovatela">Výber poskytovateľa</a>
+a <a href="#odporucani-poskytovatelia">odporúčania podľa súkromia, ceny a rýchlosti</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Upstream model</th>
+<th>Poznámka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openrouter-free</code></td>
+<td><code>openrouter/free</code></td>
+<td>router cez bezplatné modely, prompty môžu byť logované</td>
+</tr>
+<tr>
+<td><code>qwen4-max-openrouter</code></td>
+<td><code>qwen/qwen4-max</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>deepseek-v4.1-flash-openrouter</code></td>
+<td><code>deepseek/deepseek-v4.1-flash-1017</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>glm-5.3-flash-openrouter</code></td>
+<td><code>z-ai/glm-5.3-flash</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>glm-5.3-openrouter</code></td>
+<td><code>z-ai/glm-5.3</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>minimax-m3.1-flash-openrouter</code></td>
+<td><code>minimax/minimax-m3.1-flash</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>inkling-2-small-openrouter</code></td>
+<td><code>thinkingmachines/inkling-2-small</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>jev-openrouter</code></td>
+<td><code>~typesafe/jev-latest</code></td>
+<td>nie chat model: volá sa cez <code>/v1/systemone</code>, pozri <a href="#decision-sluzba">Decision služba</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vyber-poskytovatela">Výber poskytovateľa</h4>
+<p>Poskytovateľa si vyberáš v každej požiadavke cez <code>provider</code>:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"</span><span class="nv">$API_BASE</span><span class="s2">/v1/chat/completions"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+<span class="s1">    "model": "glm-5.3-flash-openrouter",</span>
+<span class="s1">    "messages": [{"role": "user", "content": "Ahoj!"}],</span>
+<span class="s1">    "provider": {"only": ["deepinfra"]}</span>
+<span class="s1">  }'</span>
+</code></pre></div>
+<ul>
+<li><strong>Bez <code>provider</code>:</strong> OpenRouter vyberie automaticky.</li>
+<li><strong><code>"only": ["deepinfra"]</code>:</strong> použije sa iba DeepInfra.</li>
+<li><strong><code>"order": ["nebius", "deepinfra"]</code>:</strong> najprv skúsi Nebius, potom DeepInfra a potom ostatných.</li>
+</ul>
+<p>V Pythone pridaj do volania <code>extra_body={"provider": {"only": ["deepinfra"]}}</code>.</p>
+<p>Vybrať si môžeš každého poskytovateľa, ktorý daný model ponúka. Ich názvy vypíšeš takto
+(do URL daj <em>Upstream model</em> z tabuľky):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">'.data.endpoints[].tag | split("/")[0]'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Skontroluj si názov</p>
+<p>Neplatný názov v <code>only</code> vráti chybu 404. V <code>order</code> sa bez upozornenia preskočí
+a odpovie iný poskytovateľ.</p>
+</div>
+<h4 id="odporucani-poskytovatelia">Odporúčaní poskytovatelia</h4>
+<p>Vyber si podľa toho, na čom ti záleží. Všetci v tabuľke podporujú ZDR
+(zero data retention), čiže prompty po spracovaní bežne neukladajú.</p>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Súkromie</th>
+<th>Cena (vstup / výstup)</th>
+<th>Rýchlosť</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deepseek-v4.1-flash-openrouter</code></td>
+<td><code>nebius</code></td>
+<td><code>sail-research</code> ($0,04 / $0,10)</td>
+<td><code>nebius</code> (350 t/s)</td>
+</tr>
+<tr>
+<td><code>glm-5.3-flash-openrouter</code></td>
+<td><code>nebius</code></td>
+<td><code>relace</code> ($0,05 / $0,07)</td>
+<td><code>mistral</code> (213 t/s)</td>
+</tr>
+<tr>
+<td><code>glm-5.3-openrouter</code></td>
+<td><code>nebius</code></td>
+<td><code>wafer</code> ($0,07 až 0,18 / $1,40)</td>
+<td><code>nebius</code> (354 t/s)</td>
+</tr>
+<tr>
+<td><code>minimax-m3.1-flash-openrouter</code></td>
+<td><code>nebius</code></td>
+<td><code>nebius</code> ($0,15 / $0,60)</td>
+<td><code>nebius</code> (300 t/s)</td>
+</tr>
+<tr>
+<td><code>inkling-2-small-openrouter</code></td>
+<td><code>nebius</code></td>
+<td><code>primeintellect</code> ($0,15 / $0,50)</td>
+<td><code>primeintellect</code> (399 t/s)</td>
+</tr>
+</tbody>
+</table>
+<p>Názov z tabuľky daj do <code>provider</code>:</p>
+<ul>
+<li><strong>Súkromie:</strong> <code>"provider": {"only": ["nebius"], "zdr": true}</code>. Nebius sídli v Holandsku. Keď má výpadok,
+  dostaneš chybu a prompt k inému poskytovateľovi nejde.</li>
+<li><strong>Cena alebo rýchlosť:</strong> <code>"provider": {"order": ["sail-research"], "zdr": true}</code> (názov vymeň podľa modelu).
+  Pri výpadku odpovie iný poskytovateľ so ZDR, ktorý môže byť drahší alebo pomalší.</li>
+</ul>
+<p>Ak nevieš, čo si vybrať, zober <code>nebius</code>. Nájdeš ho pri všetkých piatich modeloch z tabuľky
+a pri troch bol v teste aj najrýchlejší. Najlacnejší ale väčšinou nie je.</p>
+<p><code>qwen4-max-openrouter</code> má iba poskytovateľa Alibaba, bez ZDR. So <code>"zdr": true</code> preto vráti chybu.
+Pri <code>openrouter-free</code> si poskytovateľa nevyberaj a počítaj s logovaním promptov.</p>
+<div class="admonition warning">
+<p class="admonition-title">Citlivé dáta</p>
+<p>ZDR platí len pre poskytovateľa. FIIT LiteLLM si prompty ukladá vždy a sídlo v EÚ
+nezaručuje, že sa dáta spracujú v EÚ. Ak dáta nesmú odísť z fakulty, použi
+<code>gemma4-26b-a4b-hpc</code>, <code>ornith-hpc</code> alebo <code>qwen3.8-flash-next</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ako sme vyberali (22. 11. 2026)</p>
+<ul>
+<li>Ceny sú v USD za milión tokenov podľa OpenRouter. Porovnávali sme ich pri pomere
+  3 vstupné tokeny na 1 výstupný, bez flex a spot endpointov.</li>
+<li>Pri MiniMax je <code>wafer</code> o 10 % lacnejší, v teste však vracal 429 alebo bol pomalý.</li>
+<li>Rýchlosť je medián zo 7 požiadaviek po 350 tokenov cez FIIT proxy, vrátane čakania
+  na začiatok odpovede. Merali sme len vybraných poskytovateľov a v jeden deň,
+  takže čísla ber orientačne. Ceny aj rýchlosť sa menia.</li>
+</ul>
+</div>
+<h3 id="lokalne-modely-fiit-servery">Lokálne modely (FIIT servery)</h3>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Server</th>
+<th>Poznámka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gemma4-26b-a4b-hpc</code></td>
+<td>HPC</td>
+<td>reasoning model</td>
+</tr>
+<tr>
+<td><code>ornith-hpc</code></td>
+<td>HPC</td>
+<td></td>
+</tr>
+<tr>
+<td><code>qwen3.8-flash-next</code></td>
+<td>fuska</td>
+<td><a href="https://huggingface.co/nvidia/Qwen3.8-Flash-Next-NVFP4">nvidia/Qwen3.8-Flash-Next-NVFP4</a>, reasoning model</td>
+</tr>
+<tr>
+<td><code>decision-local</code></td>
+<td>decision</td>
+<td>nie chat model: volá sa cez <code>/v1/systemone</code>, pozri <a href="#decision-sluzba">Decision služba</a></td>
+</tr>
+<tr>
+<td><code>otter-ner</code></td>
+<td>decision</td>
+<td>rozpoznávanie entít (NER), odpoveď je JSON, pozri <a href="#rozpoznavanie-entit-ner">Rozpoznávanie entít (NER)</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Reasoning modely</p>
+<p><code>gemma4-26b-a4b-hpc</code> a <code>qwen3.8-flash-next</code> najprv „premýšľajú“ a až potom odpovedajú.
+Pri malom <code>max_tokens</code> (napr. 16) minú všetky tokeny na premýšľanie a
+odpoveď je prázdna. Nastav <code>max_tokens</code> aspoň na 512.</p>
+</div>
+<h2 id="prepis-reci-audio-transcription">Prepis reči (audio transcription)</h2>
+<p>Endpoint <code>/v1/audio/transcriptions</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Poznámka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gpt-transcribe-fiit</code></td>
+<td>odporúčaný</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generovanie-obrazkov">Generovanie obrázkov</h2>
+<p>Endpoint <code>/v1/images/generations</code>. Úprava obrázkov (<code>/v1/images/edits</code>) cez OpenRouter nefunguje.</p>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Upstream model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gpt-image-2.6-flare-fiit</code></td>
+<td><code>gpt-image-2.6-flare</code></td>
+</tr>
+<tr>
+<td><code>gpt-image-2.6-sunburst-fiit</code></td>
+<td><code>gpt-image-2.6-sunburst</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="decision-sluzba">Decision služba</h2>
+<p>Decision služba používa formát <strong>System One</strong> (state + questions), nie OpenAI
+chat formát. Nevoláš ju cez <code>/v1/chat/completions</code>, ale cez endpoint
+<code>/v1/systemone</code> s bežným LiteLLM kľúčom.</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Model</th>
+<th>Limity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST $API_BASE/v1/systemone</code></td>
+<td><code>decision-local</code></td>
+<td>16 384 tokenov na požiadavku, 2 súbežné požiadavky</td>
+</tr>
+<tr>
+<td><code>POST $API_BASE/v1/systemone</code></td>
+<td><code>jev-openrouter</code></td>
+<td>262 144 tokenov podľa OpenRouter, iba text</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"</span><span class="nv">$API_BASE</span><span class="s2">/v1/systemone"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+<span class="s1">    "model": "decision-local",</span>
+<span class="s1">    "state": "Customer wrote: I was charged twice for my order and want my money back.",</span>
+<span class="s1">    "questions": {</span>
+<span class="s1">      "is_refund_request": {"type": "noul", "instructions": "Is the customer asking for a refund?"}</span>
+<span class="s1">    }</span>
+<span class="s1">  }'</span>
+</code></pre></div>
+<p>Odpoveď obsahuje odpoveď na každú otázku pod jej menom, napr.
+<code>{"is_refund_request": {"type": "noul", "noul": 0.98}}</code>. Typy otázok sú
+<code>noul</code>, <code>choice</code> a <code>score</code>. Viac v
+<a href="https://docs.litellm.ai/docs/decisions">LiteLLM dokumentácii</a>.</p>
+<p>Pre Jev od TypeSafe zmeň v ukážke iba <code>model</code> na <code>jev-openrouter</code>. Stojí $0,042 za milión
+vstupných tokenov, výstup je zadarmo. Alias ide vždy na najnovšiu verziu, takže sa výsledky môžu
+časom zmeniť.</p>
+<div class="admonition warning">
+<p class="admonition-title">Jev ide mimo fakulty</p>
+<p>Dáta idú cez OpenRouter k firme TypeSafe. Pole <code>provider</code> (aj <code>"zdr": true</code>) sa pri
+<code>/v1/systemone</code> zahodí bez upozornenia, takže ZDR si tu nevynútiš. Citlivé dáta sem neposielaj.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Používaj alias</p>
+<p>Pri lokálnej službe vždy posielaj <code>"model": "decision-local"</code>. Názov fyzického modelu sa môže
+po výmene zmeniť, preto naň v kóde nespoliehaj, ani na hodnotu poľa
+<code>model</code> v odpovedi.</p>
+</div>
+<h2 id="rozpoznavanie-entit-ner">Rozpoznávanie entít (NER)</h2>
+<p>Model <code>otter-ner</code> (<a href="https://huggingface.co/whoisjones/otter-cross-mmbert">whoisjones/otter-cross-mmbert</a>)
+nájde v texte entity, napríklad osoby a miesta. Volá sa cez <code>/v1/chat/completions</code>, ale nie je to
+konverzačný model. Do <code>content</code> správy daj JSON ako reťazec:</p>
+<ul>
+<li><code>text</code>: text, v ktorom hľadáš entity,</li>
+<li><code>labels</code>: typy entít, ktoré chceš nájsť (ľubovoľné názvy, napr. <code>person</code>, <code>location</code>),</li>
+<li><code>threshold</code>: minimálne skóre, od ktorého sa entita vráti (napr. <code>0.5</code>).</li>
+</ul>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">"</span><span class="nv">$API_BASE</span><span class="s2">/v1/chat/completions"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$API_KEY</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+<span class="s1">    "model": "otter-ner",</span>
+<span class="s1">    "messages": [{</span>
+<span class="s1">      "role": "user",</span>
+<span class="s1">      "content": "{\"text\": \"Maroš Šefčovič visited Brussels.\", \"labels\": [\"person\", \"location\"], \"threshold\": 0.5}"</span>
+<span class="s1">    }]</span>
+<span class="s1">  }'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">'.choices[0].message.content | fromjson'</span>
+</code></pre></div>
+<p>Odpoveď v <code>choices[0].message.content</code> je tiež JSON ako reťazec:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whoisjones/otter-cross-mmbert"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maroš Šefčovič"</span><span class="p">,</span><span class="w"> </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"person"</span><span class="p">,</span><span class="w"> </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brussels"</span><span class="p">,</span><span class="w"> </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"location"</span><span class="p">,</span><span class="w"> </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.82</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>start</code> a <code>end</code> sú pozície znakov v poslanom <code>text</code>. Ak do <code>content</code> dáš obyčajný text namiesto JSON,
+Otter použije predvolené typy entít.</p>
+<p>V Pythone vytvor <code>content</code> cez <code>json.dumps({...})</code> a odpoveď načítaj cez
+<code>json.loads(response.choices[0].message.content)</code>.</p>
+<h2 id="ukazka">Ukážka</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">litellm</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">litellm</span><span class="o">.</span><span class="n">completion</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">"openai/claude-haiku-5.5-fiit"</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"Ahoj!"</span><span class="p">}],</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">,</span>
+    <span class="n">api_base</span><span class="o">=</span><span class="n">API_BASE</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script>
+    document.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-md-copy]");
+      if (!button) return;
+      const label = button.textContent;
+      try {
+        const response = await fetch(button.dataset.mdCopy);
+        await navigator.clipboard.writeText(await response.text());
+        button.textContent = "Skopírované";
+      } catch (err) {
+        button.textContent = "Nepodarilo sa skopírovať";
+      }
+      setTimeout(() => { button.textContent = label; }, 2000);
+    });
+  </script>
+  <style>
+    .md-export { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .md-export .md-button { font-size: .7rem; padding: .3em 1em; }
+  </style>
+
+  <script data-mkdocs-jupyter-mathjax="{&quot;url&quot;: &quot;https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js&quot;, &quot;version&quot;: 4}">
+/* Shared by full pages and Material's instant navigation. */
+(() => {
+  const config = JSON.parse(document.currentScript.dataset.mkdocsJupyterMathjax);
+  if (window.mkdocsJupyterMathJax) return;
+
+  let loading;
+  let queue = Promise.resolve();
+  let previous = [];
+
+  const ready = async () => {
+    if (!loading) {
+      loading = (async () => {
+        let math = window.MathJax;
+        if (!math?.typesetPromise) {
+          const url = new URL(config.url, document.baseURI).href;
+          const existing = Array.from(document.scripts).find(script =>
+            script.src && (script.src === url || script.id === 'MathJax-script' ||
+              (/mathjax/i.test(script.src) &&
+               /\/(?:MathJax|latest|(?:tex|mml)(?:-mml)?-(?:chtml|svg))\.js(?:[?#]|$)/i.test(script.src))));
+          if (existing) {
+            if (!math?.startup?.promise) {
+              await new Promise((resolve, reject) => {
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+              });
+            }
+          } else {
+            // Keep site macros, delimiters and startup hooks when supplied.
+            const options = math || {};
+            window.MathJax = {
+              ...options,
+              loader: {
+                ...options.loader,
+                load: Array.from(new Set(['ui/safe', ...(options.loader?.load || [])]))
+              },
+              startup: { typeset: false, ...options.startup },
+              tex: {
+                tags: 'ams',
+                useLabelIds: true,
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                ...options.tex
+              }
+            };
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = config.url;
+              script.id = 'MathJax-script';
+              script.async = true;
+              script.onload = resolve;
+              script.onerror = reject;
+              document.head.appendChild(script);
+            });
+          }
+        }
+        math = window.MathJax;
+        await math.startup.promise;
+        return math;
+      })();
+    }
+    const math = await loading;
+    // A site owner can extend the v3 queue again on each navigation.
+    await math.startup.promise;
+    return math;
+  };
+
+  const unrendered = node => {
+    if (node.matches('mjx-container')) return [];
+    if (!node.querySelector('mjx-container')) return [node];
+    // In v3, scanning generated assistive MathML again produces nested output.
+    return Array.from(node.children).flatMap(unrendered);
+  };
+
+  const refresh = () => {
+    // A separate chain also serializes v3, without changing v4's startup promise.
+    queue = queue.then(async () => {
+      const notebooks = Array.from(document.querySelectorAll('.jupyter-wrapper'));
+      if (!notebooks.length && !previous.length) return;
+      if (notebooks.length === previous.length &&
+          notebooks.every((node, index) => node === previous[index])) return;
+      const math = await ready();
+      if (previous.length) {
+        math.typesetClear(previous);
+        math.texReset();
+      }
+      previous = notebooks.filter(node => node.isConnected);
+      const pending = previous.flatMap(unrendered);
+      if (pending.length) await math.typesetPromise(pending);
+    }).catch(error => console.error('mkdocs-jupyter: MathJax rendering failed', error));
+    return queue;
+  };
+
+  window.mkdocsJupyterMathJax = { refresh };
+  const start = () => {
+    if (typeof document$ !== 'undefined') document$.subscribe(refresh);
+    else refresh();
+  };
+  // Theme bundles and user-provided MathJax scripts can follow notebook content.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else start();
+})();
+
+</script>
+</body>
+</html>
