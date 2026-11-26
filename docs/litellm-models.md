@@ -138,6 +138,7 @@ Pri `openrouter-free` si poskytovateľa nevyberaj a počítaj s logovaním promp
 | `ornith-hpc` | HPC | |
 | `qwen3.8-flash-next` | fuska | [nvidia/Qwen3.8-Flash-Next-NVFP4](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-NVFP4), reasoning model |
 | `decision-local` | decision | nie chat model: volá sa cez `/v1/systemone`, pozri [Decision služba](#decision-sluzba) |
+| `otter-ner` | decision | rozpoznávanie entít (NER), odpoveď je JSON, pozri [Rozpoznávanie entít (NER)](#rozpoznavanie-entit-ner) |
 
 !!! tip "Reasoning modely"
     `gemma4-26b-a4b-hpc` a `qwen3.8-flash-next` najprv „premýšľajú“ a až potom odpovedajú.
@@ -202,6 +203,47 @@ vstupných tokenov, výstup je zadarmo. Alias ide vždy na najnovšiu verziu, ta
     Pri lokálnej službe vždy posielaj `"model": "decision-local"`. Názov fyzického modelu sa môže
     po výmene zmeniť, preto naň v kóde nespoliehaj, ani na hodnotu poľa
     `model` v odpovedi.
+
+## Rozpoznávanie entít (NER)
+
+Model `otter-ner` ([whoisjones/otter-cross-mmbert](https://huggingface.co/whoisjones/otter-cross-mmbert))
+nájde v texte entity, napríklad osoby a miesta. Volá sa cez `/v1/chat/completions`, ale nie je to
+konverzačný model. Do `content` správy daj JSON ako reťazec:
+
+- `text`: text, v ktorom hľadáš entity,
+- `labels`: typy entít, ktoré chceš nájsť (ľubovoľné názvy, napr. `person`, `location`),
+- `threshold`: minimálne skóre, od ktorého sa entita vráti (napr. `0.5`).
+
+```bash
+curl "$API_BASE/v1/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "otter-ner",
+    "messages": [{
+      "role": "user",
+      "content": "{\"text\": \"Maroš Šefčovič visited Brussels.\", \"labels\": [\"person\", \"location\"], \"threshold\": 0.5}"
+    }]
+  }' | jq '.choices[0].message.content | fromjson'
+```
+
+Odpoveď v `choices[0].message.content` je tiež JSON ako reťazec:
+
+```json
+{
+  "model": "whoisjones/otter-cross-mmbert",
+  "entities": [
+    {"text": "Maroš Šefčovič", "label": "person", "start": 0, "end": 14, "score": 0.98},
+    {"text": "Brussels", "label": "location", "start": 23, "end": 31, "score": 0.82}
+  ]
+}
+```
+
+`start` a `end` sú pozície znakov v poslanom `text`. Ak do `content` dáš obyčajný text namiesto JSON,
+Otter použije predvolené typy entít.
+
+V Pythone vytvor `content` cez `json.dumps({...})` a odpoveď načítaj cez
+`json.loads(response.choices[0].message.content)`.
 
 ## Ukážka
 
